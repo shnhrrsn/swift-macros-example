@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euxo pipefail
+
+if ! command -v xcodegen &>/dev/null; then
+	echo "Missing xcodegen, install via 'brew install xcodegen' and run again" >&2
+	exit 1
+fi
+
+killall Xcode || true
+xcodegen
+sleep 1
+open SwiftMacrosExample.xcodeproj
